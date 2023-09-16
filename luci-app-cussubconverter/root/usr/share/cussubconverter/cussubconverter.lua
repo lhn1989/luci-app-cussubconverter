@@ -31,7 +31,7 @@ for k, url in ipairs(suburl) do
         u = u .. "\n" .. ind .. dash .. k
         p = p .. ind .. k .. ":\n"
         p = p .. ind .. ind .. 'type: http\n'
-        p = p .. ind .. ind .. 'path: "/proxy_provider/' .. k .. '.yaml"\n'
+        p = p .. ind .. ind .. 'path: "./proxy_provider/' .. k .. '.yaml"\n'
         p = p .. ind .. ind .. 'url: "' .. url .. '"\n'
         p = p .. ind .. ind .. 'interval: 3600\n'
         p = p .. ind .. ind .. 'health-check:\n'
