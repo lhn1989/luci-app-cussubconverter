@@ -20,7 +20,7 @@ local conurl = ucic:get_first('cussubconverter', 'cussubconverter', 'conurl', 'h
 local suburl = ucic:get_first('cussubconverter', 'cussubconverter', 'suburl', {})
 
 local dash = "- "
-local u = "  use:"
+local u = "use:"
 
 local p = ""
 local ind = "  "
