@@ -6,7 +6,7 @@ function index()
 end
 
 function convert()
-        message = luci.sys.exec("/usr/bin/lua /tmp/cussubconverter.lua")
+        message = luci.sys.exec("/usr/bin/lua /usr/share/cussubconverter/cussubconverter.lua")
 	luci.http.prepare_content("text/plain")
 	luci.http.write(message)                                           
 end
