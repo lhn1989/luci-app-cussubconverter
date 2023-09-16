@@ -20,7 +20,7 @@ local conurl = ucic:get_first('cussubconverter', 'cussubconverter', 'conurl', 'h
 local suburl = ucic:get_first('cussubconverter', 'cussubconverter', 'suburl', {})
 
 local dash = "- "
-local u = "  use:\n"
+local u = "  use:"
 
 local p = ""
 local ind = "  "
@@ -28,7 +28,7 @@ local ind = "  "
 local raw = wget(conurl)
 
 for k, url in ipairs(suburl) do
-        u = u .. ind .. ind .. dash .. k .. "\n"
+        u = "\n" .. u .. ind .. ind .. dash .. k
         p = p .. ind .. k .. ":\n"
         p = p .. ind .. ind ..'path: "/proxy_provider/' .. k .. '.yaml"\n'
         p = p .. ind .. ind .. '<<: *p\n'
