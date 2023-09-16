@@ -32,7 +32,7 @@ for k, url in ipairs(suburl) do
         p = p .. ind .. k .. ":\n"
         p = p .. ind .. ind ..'path: "/proxy_provider/' .. k .. '.yaml"\n'
         p = p .. ind .. ind .. '<<: *p\n'
-        p = p .. ind .. ind .. 'url :"' .. url .. '"\n'
+        p = p .. ind .. ind .. 'url: "' .. url .. '"\n'
 end
 raw = string.gsub(raw, "UsePlaceholder", u)
 raw = string.gsub(raw, "ProxyProvidersPlaceholder", p)
