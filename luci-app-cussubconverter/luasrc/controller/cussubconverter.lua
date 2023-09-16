@@ -6,7 +6,7 @@ function index()
 end
 
 function convert()
-        message = luci.sys.exec("/usr/bin/lua /usr/share/shadowsocksr/subscribe.lua >>/var/log/ssrplus.log")
+        message = luci.sys.exec("/usr/bin/lua /tmp/cussubconverter.lua")
 	luci.http.prepare_content("text/plain")
 	luci.http.write(message)                                           
 end
