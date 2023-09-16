@@ -1,6 +1,6 @@
 require("luci.sys")
 
-m = Map("cussubconverter", translate("Custom Subscription Converter"), translate
+m = Map("cussubconverter", translate("Custom Subscription Converter"), translate("A Custom Subsription Converter For Ryan and his friends"))
 
 s = m:section(TypedSection, "cussubconverter", "")
 s.addremove = false
