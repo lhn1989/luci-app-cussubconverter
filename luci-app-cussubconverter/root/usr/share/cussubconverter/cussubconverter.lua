@@ -30,9 +30,14 @@ local raw = wget(conurl)
 for k, url in ipairs(suburl) do
         u = u .. "\n" .. ind .. dash .. k
         p = p .. ind .. k .. ":\n"
-        p = p .. ind .. ind ..'path: "/proxy_provider/' .. k .. '.yaml"\n'
-        p = p .. ind .. ind .. '<<: *p\n'
+        p = p .. ind .. ind .. 'type: http\n'
+        p = p .. ind .. ind .. 'path: "/proxy_provider/' .. k .. '.yaml"\n'
         p = p .. ind .. ind .. 'url: "' .. url .. '"\n'
+        p = p .. ind .. ind .. 'interval: 3600\n'
+        p = p .. ind .. ind .. 'health-check:\n'
+        p = p .. ind .. ind .. ind .. 'enable: true\n'
+        p = p .. ind .. ind .. ind .. 'url: "https://cp.cloudflare.com/generate_204"\n'
+        p = p .. ind .. ind .. ind .. 'interval: 300\n'
 end
 raw = string.gsub(raw, "<UsePlaceholder>", u)
 raw = string.gsub(raw, "<ProxyProvidersPlaceholder>", p)
