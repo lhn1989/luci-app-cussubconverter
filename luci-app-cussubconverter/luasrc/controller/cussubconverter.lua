@@ -1,21 +1,29 @@
 module("luci.controller.cussubconverter", package.seeall)
 
 function index()
-        entry({"admin", "services", "cussubconverter"}, cbi("cussubconverter"),
-        entry({"admin", "services", "cussubconverter", "convert"}, call("convert
+        entry({"admin", "services", "cussubconverter"}, cbi("cussubconverter")
+        entry({"admin", "services", "cussubconverter", "convert"}, call("convert"), _("CusSubConver"), 100)
         end
+
+-- trim                                                                         
+local function trim(text)                                                       
+        if not text or text == "" then                                          
+                return ""                                                       
+        end                                                                     
+        return (sgsub(text, "^%s*(.-)%s*$", "%1"))                              
+end
 
 -- wget
 local function wget(url)
-        local stdout = luci.sys.exec('wget -q --user-agent="Mozilla/5.0 (X11; Li
+        local stdout = luci.sys.exec('wget -q --user-agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36" --no-check-certificate -O- "' .. url .. '"')
         return trim(stdout)
 end
 
 function convert()
 
 local ucic = luci.model.uci.cursor()
-local conurl = ucic:get_first('cussubconverter', 'cussubconverter', 'conurl', 'h
-local subscribe_url = ucic:get_first('cussubconverter', 'cussubconverter', 'subu
+local conurl = ucic:get_first('cussubconverter', 'cussubconverter', 'conurl', 'https://raw.githubusercontent.com/lhn1989/Rules/master/Subscription/config.yaml') 
+local subscribe_url = ucic:get_first('cussubconverter', 'cussubconverter', 'suburl', {}) 
 
 local dash = "- "
 local u = ""
@@ -38,15 +46,6 @@ raw = string.gsub(raw, "use-placeholder", u)
 raw = string.gsub(raw, "proxy-providers-placeholder", p)                        
 print(raw)                                                                      
                                                                                 
-        luci.sys.call("/usr/bin/lua /usr/share/shadowsocksr/subscribe.lua >>/var
-        luci.http.prepare_content("application/json")                           
-        luci.http.write_json(raw)                                               
-end
-
--- trim                                                                         
-local function trim(text)                                                       
-        if not text or text == "" then                                          
-                return ""                                                       
-        end                                                                     
-        return (sgsub(text, "^%s*(.-)%s*$", "%1"))                              
+luci.http.prepare_content("application/json")                           
+luci.http.write_json(raw)                                               
 end
