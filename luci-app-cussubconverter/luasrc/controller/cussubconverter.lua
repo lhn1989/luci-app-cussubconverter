@@ -7,6 +7,6 @@ end
 
 function convert()
         message = luci.sys.exec("/usr/bin/lua /usr/share/cussubconverter/cussubconverter.lua")
-	luci.http.prepare_content("text/plain")
+	luci.http.prepare_content("text/plain; charset=UTF-8")
 	luci.http.write(message)                                           
 end
