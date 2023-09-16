@@ -10,7 +10,7 @@ local function trim(text)
         if not text or text == "" then                                          
                 return ""                                                       
         end                                                                     
-        return (sgsub(text, "^%s*(.-)%s*$", "%1"))                              
+        return (string.gsub(text, "^%s*(.-)%s*$", "%1"))                              
 end
 
 -- wget
