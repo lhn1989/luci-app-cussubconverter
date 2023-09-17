@@ -1,6 +1,13 @@
 require("luci.sys")
 
-m = Map("cussubconverter", translate("Custom Subscription Converter"), translate("A Custom Subsription Converter For Ryan and his friends"))
+font_red = [[<b style=color:red>]]
+font_off = [[</b>]]
+
+m = Map("cussubconverter", translate("Custom Subscription Converter"))
+m.description = translate("A Custom Subsription Converter For Ryan and his friends.")..
+"<br/>"..
+"<br/>"..translate("Convertered URL: ")..
+"<br/>".."http://192.168.100.1/cgi-bin/luci/admin/services/cussubconverter/convert?luci_username=root&luci_password="..font_red.."XXX"..font_off
 
 s = m:section(TypedSection, "cussubconverter", "")
 s.addremove = false
