@@ -1,4 +1,4 @@
 #!/bin/sh
 
-#chmod +x /www/cgi-bin/cussubconverter
+chmod +x /www/cgi-bin/cussubconverter
 exit 0
