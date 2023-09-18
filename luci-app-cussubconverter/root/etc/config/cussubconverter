@@ -1,1 +1,2 @@
 config cussubconverter
+        option conurl 'https://raw.githubusercontent.com/lhn1989/Rules/master/Subscription/config.yaml'
