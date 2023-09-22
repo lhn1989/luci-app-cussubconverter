@@ -23,22 +23,30 @@ local suburl = ucic:get_first('cussubconverter', 'cussubconverter', 'suburl', {}
 local dash = "- "
 local u = "use:"
 
+local proxyTemplate = [[
+  <k>:
+    type: http
+    path: "./proxy_provider/<k>.yaml"
+    url: "<url>"
+    interval: 3600
+    health-check:
+      enable: true
+      url: "https://cp.cloudflare.com/generate_204"
+      interval: 300]]
+
 local p = ""
 local ind = "  "
 
 local raw = wget(conurl)
 
 for k, url in ipairs(suburl) do
-        u = u .. "\n" .. ind .. dash .. k
-        p = p .. ind .. k .. ":\n"
-        p = p .. ind .. ind .. 'type: http\n'
-        p = p .. ind .. ind .. 'path: "./proxy_provider/' .. k .. '.yaml"\n'
-        p = p .. ind .. ind .. 'url: "' .. url .. '"\n'
-        p = p .. ind .. ind .. 'interval: 3600\n'
-        p = p .. ind .. ind .. 'health-check:\n'
-        p = p .. ind .. ind .. ind .. 'enable: true\n'
-        p = p .. ind .. ind .. ind .. 'url: "https://cp.cloudflare.com/generate_204"\n'
-        p = p .. ind .. ind .. ind .. 'interval: 300\n'
+        proxyName = "provider" .. k
+        u = u .. "\n" .. ind .. dash .. proxyName
+
+        proxyConfig = string.gsub(proxyTemplate, "<k>", proxyName)
+        proxyConfig = string.gsub(proxyConfig, "<url>", url)
+
+        p = p .. proxyConfig .. "\n"
 end
 raw = string.gsub(raw, "<UsePlaceholder>", u)
 raw = string.gsub(raw, "<ProxyProvidersPlaceholder>", p)
