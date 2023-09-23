@@ -32,7 +32,8 @@ local proxyTemplate = [[
     health-check:
       enable: true
       url: "https://cp.cloudflare.com/generate_204"
-      interval: 300]]
+      interval: 300
+]]
 
 local p = ""
 local ind = "  "
@@ -46,7 +47,7 @@ for k, url in ipairs(suburl) do
         proxyConfig = string.gsub(proxyTemplate, "<k>", proxyName)
         proxyConfig = string.gsub(proxyConfig, "<url>", url)
 
-        p = p .. proxyConfig .. "\n"
+        p = p .. proxyConfig
 end
 raw = string.gsub(raw, "<UsePlaceholder>", u)
 raw = string.gsub(raw, "<ProxyProvidersPlaceholder>", p)
