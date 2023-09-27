@@ -1,6 +1,6 @@
 require("luci.sys")
 
-font_red = [[<b style=color:red>]]
+font_red = [[<b style=color:green>]]
 font_off = [[</b>]]
 
 m = Map("cussubconverter", translate("Custom Subscription Converter"))
