@@ -17,7 +17,7 @@ local function wget(url)
 end
 
 local ucic = luci.model.uci.cursor()
-local conurl = ucic:get_first('cussubconverter', 'cussubconverter', 'conurl', 'https://raw.githubusercontent.com/lhn1989/Rules/master/Subscription/config.yaml')
+local conurl = ucic:get_first('cussubconverter', 'cussubconverter', 'conurl')
 local suburl = ucic:get_first('cussubconverter', 'cussubconverter', 'suburl', {})
 
 local dash = "- "
